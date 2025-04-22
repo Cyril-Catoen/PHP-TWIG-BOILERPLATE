@@ -1,0 +1,69 @@
+<?php
+
+require_once('partial/header.php');
+
+?>
+
+<!-- <main>
+
+<h1>Bonjour</h1>
+<h2>Liste des produits commercialisés :</h2>
+<section>
+<?php //
+// foreach ($articles as $index => $article) {
+   // if ($article['is_published'] == true) {
+    ?>
+    <article>
+        <h2><?php // echo $article['id'] ?></h2>
+        <p><?php // echo $article['title'] ?> </p>
+        <p><?php // echo $article['content'] ?> euros</p>
+        <p>Publié le : <?php // echo $article['created_at']->format('Y-m-d') ?></p>
+        <img src="<?php // echo $article['image'] ?>" alt="">
+        <p class="ftwght-bold"><?php // echo $article['is_published'] ?></p>
+        <a href=".php?index=<?php // echo $index; ?>">Voir l'article</a> -->
+    </article>
+<?php // }} ?>
+<!-- </section> </main>-->
+
+
+<head>
+        <!-- Permet de configurer le site en responsive -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <!-- Import du fichier style.css -->
+        <link rel="stylesheet" href="../css/style.css?v=<?= time(); ?>" />
+
+        <!-- Nomme l'onglet du navigateur -->
+        <title>BOILERPLATE</title>
+</head>
+
+<body>
+
+<main>
+    <section class="list-articles">
+
+        {% for article in articles %}
+
+            {% if article.is_published %}
+
+                <article class="article">
+
+                    <h2 class="article-title">{{ article.title }}</h2>
+                    <img class="article-image" src="{{ article.image }}" />
+                    <p  class="article-date">Créé le {{ article.createdAt | date }}</p>
+                    <p  class="article-content">{{ article.content}}</p>
+
+                </article>
+
+            {% endif %}
+
+        {% endfor %}
+
+    </section>
+
+</main>
+</body>
+
+
+<?php require_once('partial/footer.php'); ?>

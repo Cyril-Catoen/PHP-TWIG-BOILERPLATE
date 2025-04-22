@@ -1,5 +1,9 @@
 <?php 
 
+require_once '../vendor/autoload.php';
+
+// SELECT * FROM article
+
 $articles = [
     1 => [
         "id" => 1,
@@ -29,5 +33,13 @@ $articles = [
 ];
 
 
-require_once('../view/home.view.php');
+// La classe FilesystemLoader permet d'indiquer le chemin du dossier des views
+$loader = new \Twig\Loader\FilesystemLoader('../view');
+// On utilise une instance de la classe Twig Environnement pour appeler les fichiers view
+$twig = new \Twig\Environment($loader);
+
+// On appelle avec render le fichier de view home.html.twig, en lui envoyant la variable $articles
+echo $twig->render('home.html.twig', ['articles' => $articles]);
+
+// require_once('../view/home.view.php'); Remplacer twig->render
 ?>
